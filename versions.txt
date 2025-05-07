@@ -1,0 +1,6 @@
+In-world I number my scripts so I know which is the latest version. For example, "IRC-Client.65".
+These are the current versions:
+----
+IRC-Client: 65
+IRC-Datastore: 1
+IRC-User-Script: 5
