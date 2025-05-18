@@ -3,4 +3,4 @@ These are the current versions:
 ----
 IRC-Client: 65
 IRC-Datastore: 1
-IRC-User-Script: 5
+IRC-User-Script: 6
