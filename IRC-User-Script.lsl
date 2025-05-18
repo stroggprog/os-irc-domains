@@ -30,8 +30,9 @@ integer MSG_DATA = 2;
 
 string dataSeparator = ";;";
 
-relay( string message, string who ){
-    llMessageLinked( LINK_THIS, LNK_MSG_SEND, message, who );
+relay( string message, list who ){
+    if( who == [] ) who = defaultOptions;
+    llMessageLinked( LINK_THIS, LNK_MSG_SEND, message, llList2CSV(who) );
 }
 
 handleMessage( string msg, string senderDetails ){

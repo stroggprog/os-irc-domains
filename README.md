@@ -146,7 +146,7 @@ As you can see, this shows usage for just one of the message values and also for
 To send messages to another object or group of objects, you use the relay function which has the following profile:
 
 ```lsl
-relay( string message, string who )
+relay( string message, list who )
 ```
 
 The message is constructed in the following manner:
@@ -158,12 +158,12 @@ string message = "MSG_TYPE::MSG_MSG::"+data;              // replace "MSG_TYPE" 
 
 The value `dataSeparator` is defined at the top of the file and can be changed to almost anything you want. You cannot set it to anything that might appear in your data, nor can you set it to `::`. The default is `;;`.
 
-The `who` parameter to the relay is also a stringified list:
+The `who` parameter to the relay is a list:
 
 ```lsl
 string region = "*";  // target all regions
 string address = "*"; // target all addresses
-string who = llList2CSV( [ region, address ] );
+string who = llList2CSV( [ region, address ] ); // alternately: string who = region+", "+address;
 ```
 
 You can restrict which objects react to the message by specifying their address or part of it. Note that if the last part of the address you specify is not an asterisk, then only an object with that exact address will respond. If there is an asterisk, then any objects with a matching address will reply, where the asterisk acts as a wildcard meaning 'anything'.
@@ -177,16 +177,16 @@ vend.*.tables.*
 vend.*
 ```
 
-If you want to send to all objects, then you can pass a blank string instead of `"*, *"` each time:
+If you want to send to all objects, then you can pass a blank list instead of `"*, *"` each time:
 
 ```lsl
-relay( "LIGHT::DUMMY::1", "" );
+relay( "LIGHT::DUMMY::1", [] );
 ```
 
 Alternately, if this object is always sending to the same group, you can add a default at the top of the file:
 
 ```lsl
-string sendTo = "*, lamps.*";
+list sendTo = ["*", "lamps.*"];
 
 // then when you need to send a message:
 relay( yourMessage, sendTo );
